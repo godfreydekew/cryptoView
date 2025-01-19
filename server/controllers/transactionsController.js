@@ -2,6 +2,7 @@ const TransactionsSchema = require("../models/transactionsModel.js");
 const PortfolioSchema = require("../models/userPortfolioModel.js");
 const mongoose = require("mongoose");
 
+
 const createTransaction = async (req, res) => {
   const { id, quantity, price, spent, date } = req.body;
 
@@ -58,7 +59,7 @@ const createTransaction = async (req, res) => {
 const getTransactions = async (req, res) => {
   try {
     const userId = req.user.id;
-
+    console.log(userId);
     const userFolio = await PortfolioSchema.findOne({
       user_id: userId,
     }).populate("transactions");
@@ -76,4 +77,4 @@ const getTransactions = async (req, res) => {
   }
 };
 
-module.exports = { createTransaction, getTransactions };
+module.exports = { createTransaction, getTransactions};
